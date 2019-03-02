@@ -21,3 +21,6 @@ To convert P3 to P6
 ```bash
 ./ppmCovert 6 input.ppm output.ppm
 ```
+
+## Acknowledgements
+* Thanks to Zowie Haugaard for his code base
