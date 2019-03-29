@@ -11,7 +11,7 @@ typedef struct{
 
 //Used in readwritePPM.c
 RGB *readPPM(char *file, int *width, int *height, int *max);
-void writePPM(char *file, int *width, int *height, int max, const RGB *image);
+void writePPM(char *file, int width, int height, int max, const RGB *image);
 
 //used in processImage.c
 RGB *processImage(int width, int height, RGB *image, int windowSize, char *filterType);
