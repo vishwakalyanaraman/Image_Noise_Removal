@@ -25,9 +25,9 @@ RGB *processImage(int width, int height, RGB *image, int windowSize, char* filte
 
             //Creating individual RGB channels
 
-            unsigned char windowR* = (unsigned char*) malloc(sizeof(unsigned char) * windowSize * windowSize);
-            unsigned char windowG* = (unsigned char*) malloc(sizeof(unsigned char) * windowSize * windowSize);
-            unsigned char windowB* = (unsigned char*) malloc(sizeof(unsigned char) * windowSize * windowSize);
+            unsigned char *windowR = (unsigned char*) malloc(sizeof(unsigned char) * windowSize * windowSize);
+            unsigned char *windowG = (unsigned char*) malloc(sizeof(unsigned char) * windowSize * windowSize);
+            unsigned char *windowB = (unsigned char*) malloc(sizeof(unsigned char) * windowSize * windowSize);
 
             int start = 0;
             int left = i - windowSize / 2;
@@ -84,6 +84,52 @@ RGB *processImage(int width, int height, RGB *image, int windowSize, char* filte
     }
 
     return image;
+}
+
+void quickSort(unsigned char *a, int l, int r){
+    int j;
+
+    if (l < r){
+        j = partition(a, l, r);
+        quickSort(a, l, j-1);
+        quickSort(a, j+1, r);
+    }
+}
+
+unsigned char partition(unsigned char *a, int l, int r){
+    unsigned char pivot, t;
+
+    pivot = a[l];
+    int i, j;
+    i = l, j = r+1;
+
+    while(1){
+        do ++i; while(a[i] <= pivot  && i <= r);
+        do --j; while(a[j] > pivot);
+
+        if(i >= j)
+            break;
+        t = a[i];
+        a[i] = a[j];
+        a[j] = t;
+    }
+
+    t = a[l];
+    a[l] = a[j];
+    a[j] = t;
+    return j;
+}
+
+unsigned char mean(unsigned char *a, int size){
+    int sum = 0;
+
+    for(int i = 0; i < size; i++)
+        sum += a[i];
+
+    sum /= size;
+
+    unsigned char mean = (unsigned char)sum;
+    return mean;
 }
 
             
