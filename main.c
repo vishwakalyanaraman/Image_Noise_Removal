@@ -137,7 +137,7 @@ int main(int argc, char *argv[]){
     //Process0 Writes to Output PPM File
 
     if(rank == 0){
-        writePPM(argv[2], &global_width, &global_height, max, filteredImage);
+        writePPM(argv[2], global_width, global_height, max, filteredImage);
         free(image);
     }
 

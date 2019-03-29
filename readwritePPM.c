@@ -27,7 +27,7 @@ RGB *readPPM(char *file, int *width, int *height, int *max){
     char c;
     int n;
     char b[100];
-    int red, green blue;
+    int red, green, blue;
 
     fp = fopen(file, "r");
     n = fscanf(fp, "%[^\n] ", b); //Regex : matches a string of all characters != \n
@@ -40,13 +40,13 @@ RGB *readPPM(char *file, int *width, int *height, int *max){
     printf("Valid PPM File\n");
     n = fscanf(fp, "%c", &c);
     
-    while(c == "#"){
+    while(c == '#'){
         n = fscanf(fp, "%[^\n] ", b);
         printf("%s\n", b);
-        n = fscanf(fp, "%c", c);
+        n = fscanf(fp, "%c", &c);
     }
 
-    ungetc(c, fd);      //Takes a char and puts in back into input string
+    ungetc(c, fp);      //Takes a char and puts in back into input string
     n = fscanf(fp, "%d %d %d", width, height, max);
     assert(n==3);       //Assuming n = 3 for the rest of the code below, else return error
 
