@@ -24,11 +24,11 @@ where
 * input.ppm is the input PPM image
 * output.ppm is the output PPM image
 * N is an integer >= 3, where N x N is the size of the window of the image
-* F is the filtering method of choice, where MEAN is the Mean filter and MEDIAN is the Median filter
+* F is the filtering method of choice, where A is the Mean filter and M is the Median filter
 
 For example
 ```
-mpirun -np 10 ./MPI_Executable balloon.ppm out.ppm 5 MEAN
+mpirun -np 10 ./MPI_Executable balloon.ppm out.ppm 5 A
 ```
 
 produces an output PPM image named out.ppm which uses the Mean filter as a denoising filter.
