@@ -53,13 +53,13 @@ RGB *processImage(int width, int height, RGB *image, int windowSize, char* filte
             unsigned char filteredElementG;            
             unsigned char filteredElementB;
 
-            if(!strcmp(filterType, "MEAN")){
+            if(!strcmp(filterType, "A")){
                 filteredElementR = mean(windowR, start);
                 filteredElementG = mean(windowG, start);
                 filteredElementB = mean(windowB, start);
             }
 
-            if(!strcmp(filterType, "MEDIAN")){
+            if(!strcmp(filterType, "M")){
                 quickSort(windowR, 0, start);
                 quickSort(windowG, 0, start);
                 quickSort(windowB, 0, start);
