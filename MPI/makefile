@@ -1,4 +1,4 @@
-CFLAGS=-g -O2 -Wall
+CFLAGS=-g
 
 CC = mpicc
 

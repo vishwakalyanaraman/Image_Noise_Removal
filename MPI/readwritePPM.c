@@ -52,7 +52,7 @@ RGB * readPPM(char* file, int* width, int* height, int* max){
 
   assert(n==3);     //Assumes n == 3 for the rest of code below, else return error
 
-  printf("%d x %d image\n", *width, *height, *max);
+  printf("%d x %d image\n", *width, *height);
 
   int size = *width*(*height);
   
