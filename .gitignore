@@ -1,0 +1,4 @@
+seq_noise_removal
+MPI_Executable
+*.ppm
+*.o
