@@ -23,7 +23,7 @@ where
 * p is the number of processes
 * input.ppm is the input PPM image
 * output.ppm is the output PPM image
-* N is an integer >= 3, where N x N is the size of the window of the image
+* N is an integer >= 3, where N x N is the size of the window of the filter
 * F is the filtering method of choice, where A is the Mean filter and M is the Median filter
 
 For example
