@@ -8,7 +8,7 @@ import matplotlib.pyplot as plt
 # Configuration
 implementations = ['Sequential Implementation', 'MPI Implementation', 'CUDA Implementation']
 build_scripts = ['sequential.sh', 'mpi.sh', 'cuda.sh'] 
-binaries = [['./seq_noise_removal'], ['mpiexec', '-np', '5', './MPI_Executable'], './cuda-file-whatever-its-named']
+binaries = [['./seq_noise_removal'], ['mpiexec', '-np', '5', './MPI_Executable'], ['./imageFilters.x']]
 input_filename = 'balloon.ppm'
 output_filename = 'output.ppm'
 lower_window_size = 3
@@ -37,10 +37,21 @@ for imp_code in implementation:
     print('\n\nProfiling' , implementations[imp_code])
     time_taken = []
     for i in windows:
+        start = 0; end = 0
 
-        start = time.time()
-        rc = check_output([*binaries[imp_code], input_filename, output_filename, str(i), filter_code])
-        end = time.time()
+        if imp_code == 2:
+            if filter_code == 'A':
+                filter_code = 'mean'
+            elif filter_code == 'B':
+                filter_code = 'median'
+            start = time.time()
+            rc = check_output([*binaries[imp_code], str(i), input_filename, output_filename, filter_code])
+            end = time.time()
+            
+        else :
+            start = time.time()
+            rc = check_output([*binaries[imp_code], input_filename, output_filename, str(i), filter_code])
+            end = time.time()
 
         print('Windown size = {}, Time = {}'.format(i, end-start))
         time_taken.append(end-start)
