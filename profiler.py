@@ -9,7 +9,8 @@ import matplotlib.pyplot as plt
 implementations = ['Sequential Implementation', 'MPI Implementation', 'CUDA Implementation']
 build_scripts = ['sequential.sh', 'mpi.sh', 'cuda.sh'] 
 binaries = [['./seq_noise_removal'], ['mpiexec', '-np', '5', './MPI_Executable'], ['./imageFilters.x']]
-input_filename = 'balloon.ppm'
+input_filename = 'mpi_in.ppm'
+cuda_input_filename = 'cuda_in.ppm'
 output_filename = 'output.ppm'
 lower_window_size = 3
 upper_window_size = 50
@@ -45,7 +46,7 @@ for imp_code in implementation:
             elif filter_code == 'B':
                 filter_code = 'median'
             start = time.time()
-            rc = check_output([*binaries[imp_code], str(i), input_filename, output_filename, filter_code])
+            rc = check_output([*binaries[imp_code], str(i), cuda_input_filename, output_filename, filter_code])
             end = time.time()
             
         else :
@@ -70,7 +71,8 @@ ax1.set(xlabel='Window Size', ylabel='Time Taken',
 
 ax1.grid()
 
-if len(implementation) == 2:
+if len(implementation) >= 2:
+    print("Plotting 2nd subgraph")  
     imp_code = implementation[1]
     ax2 = plt.subplot(312, sharex=ax1, sharey=ax1)
     plt.plot(windows, time_taken_collection[1])
@@ -80,7 +82,9 @@ if len(implementation) == 2:
        title='')
     ax2.grid()
     ax2.title.set_position([0.1, 1.25])
+
 if len(implementation) == 3:
+    print("Plotting 3rd subgraph")
     imp_code = implementation[2]
     ax3 = plt.subplot(313, sharex=ax1,sharey=ax1)
     plt.plot(windows, time_taken_collection[2])
@@ -90,5 +94,5 @@ if len(implementation) == 3:
     ax3.grid()
 
 plt.xlim(1, 42)
-plt.ylim(0,10)
+plt.ylim(0,7)
 plt.show()
