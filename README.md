@@ -5,3 +5,14 @@ This program implements two types of filters commonly used for removing noise in
 
 ## Approach for parallelization
 Here, we use two technologies to parallelize noise removal. The first approach uses Message Passing Interface(MPI) and the second uses CUDA. 
+
+
+## Prerequisites
+To run this application you will need python3 along with numpy and matplot lib to generate the output graphs
+
+You will also need CUDA and MPI to run the independent versions of the program
+
+## Running the Application
+```
+python3 profiler.py
+```
